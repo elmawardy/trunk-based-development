@@ -46,10 +46,14 @@ workflows:
               only: /^prod-.*/
             branches:
               ignore: /.*/
+            requires:
+              - say-hello
       - deploy-dev:
           filters:
             tags:
               only: /^dev-.*/
             branches:
               ignore: /.*/
+            requires:
+              - say-hello
 
