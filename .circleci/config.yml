@@ -28,3 +28,10 @@ workflows:
     when:
       and:
         - equal: [ prod, << pipeline.git.tag >> ]
+    jobs:
+      - deploy:
+          docker:
+            - image: cimg/base:stable
+          steps:
+            - checkout
+            - run: echo "PRODUCTION"
