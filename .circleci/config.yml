@@ -43,7 +43,7 @@ workflows:
       - deploy-prod:
           filters:
             tags:
-              only: /^prod-.*/
+              only: /^prod.*/
             branches:
               ignore: /.*/
           requires:
@@ -51,7 +51,7 @@ workflows:
       - deploy-dev:
           filters:
             tags:
-              only: /^dev-.*/
+              only: /^dev.*/
             branches:
               ignore: /.*/
           requires:
