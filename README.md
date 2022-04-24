@@ -1,3 +1,3 @@
 # trunk-based-development
 
-DEV
+PROD
