@@ -12,19 +12,11 @@ jobs:
       - image: cimg/base:stable
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    environment:
-      TAG_NAME: << pipeline.git.tag >>
     steps:
       - checkout
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
-      - run: echo "tag is $TAG_NAME"
-      - run: echo "PRODUCTION"
-        when:
-          condition:
-            and:
-              - equal: ["prod", $TAG_NAME]
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -32,3 +24,7 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+  deploy-prod:
+    when:
+      and:
+        - equal: [ prod, << pipeline.git.tag >> ]
