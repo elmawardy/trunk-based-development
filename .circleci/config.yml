@@ -33,7 +33,7 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      - deploy-prod
+      - deploy-prod:
           filters:
             tags:
               only: /^prod-.*/
