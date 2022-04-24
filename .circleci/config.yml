@@ -18,12 +18,12 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
     
-   deploy-prod:
-     docker:
-       - image: cimg/base:stable
-     steps:
-       - checkout
-       - run: echo "PRODUCTION" 
+  deploy-prod:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run: echo "PRODUCTION" 
     
 
 # Invoke jobs via workflows
