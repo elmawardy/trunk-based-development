@@ -24,6 +24,13 @@ jobs:
     steps:
       - checkout
       - run: echo "PRODUCTION" 
+
+  deploy-dev:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run: echo "DEVELOPMENT" 
     
 
 # Invoke jobs via workflows
@@ -37,6 +44,12 @@ workflows:
           filters:
             tags:
               only: /^prod-.*/
+            branches:
+              ignore: /.*/
+      - deploy-prod:
+          filters:
+            tags:
+              only: /^dev-.*/
             branches:
               ignore: /.*/
 
