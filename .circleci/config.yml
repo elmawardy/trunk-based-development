@@ -39,7 +39,10 @@ workflows:
   version: 2
   say-hello-workflow:
     jobs:
-      - say-hello
+      - say-hello:
+          filters:
+            tags:
+              only: /.*/
       - deploy-prod:
           filters:
             tags:
