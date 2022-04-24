@@ -32,11 +32,8 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      
-  deploy-prod:
-    jobs: 
       - deploy-prod
-    when:
-      and:
-        - equal: [ prod, << pipeline.git.tag >> ]
+          filters:
+            tags:
+              only: /^prod-.*/
 
