@@ -1,3 +1,3 @@
 # trunk-based-development
 
-PROD 4.0
+DEV 4.0
