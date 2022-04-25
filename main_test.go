@@ -8,7 +8,7 @@ import (
 )
 
 func TestMain(t *testing.T) {
-	want := "Allah Akbar\n"
+	want := "Allah Akbar \n"
 
 	old := os.Stdout // keep backup of the real stdout
 	r, w, _ := os.Pipe()
