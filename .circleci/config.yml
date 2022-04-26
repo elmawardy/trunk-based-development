@@ -17,13 +17,20 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+      - run: export is_dev=$([[ << pipeline.git.tag >> =~ ^dev.*$ ]] && echo 1)
+    - when:
+      condition:
+        and:
+          - equal: [1, $is_devS]
+      steps:
+        - run: echo "DEVELOPMENT"
     
   deploy-prod:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: echo "PRODUCTION" 
+      - run: echo "PRODUCTION"
 
   deploy-dev:
     docker:
@@ -43,20 +50,20 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - deploy-prod:
-          filters:
-            tags:
-              only: /^prod.*/
-            branches:
-              ignore: /.*/
-          requires:
-            - say-hello
-      - deploy-dev:
-          filters:
-            tags:
-              only: /^dev.*/
-            branches:
-              ignore: /.*/
-          requires:
-            - say-hello
+      # - deploy-prod:
+      #     filters:
+      #       tags:
+      #         only: /^prod.*/
+      #       branches:
+      #         ignore: /.*/
+      #     requires:
+      #       - say-hello
+      # - deploy-dev:
+      #     filters:
+      #       tags:
+      #         only: /^dev.*/
+      #       branches:
+      #         ignore: /.*/
+      #     requires:
+      #       - say-hello
 
