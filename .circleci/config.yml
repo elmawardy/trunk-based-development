@@ -18,12 +18,12 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
       - run: export is_dev=$([[ << pipeline.git.tag >> =~ ^dev.*$ ]] && echo 1)
-    - when:
-      condition:
-        and:
-          - equal: [1, $is_devS]
-      steps:
-        - run: echo "DEVELOPMENT"
+      - when:
+        condition:
+          and:
+            - equal: [1, $is_devS]
+        steps:
+          - run: echo "DEVELOPMENT"
     
   deploy-prod:
     docker:
